@@ -1,0 +1,99 @@
+{
+  "app": "Nawah USNT",
+  "prototype": true,
+  "colors": {
+    "primary": "#5A2D82",
+    "accent": "#F6C945",
+    "background": "#FFFFFF",
+    "textPrimary": "#1C1C1C",
+    "textSecondary": "#777777"
+  },
+  "screens": [
+    {
+      "id": "home",
+      "name": "Welcome / Home",
+      "balance": "1,250 USNT",
+      "elements": [
+        { "type": "button", "label": "Start Mining", "action": "navigate", "target": "mining" },
+        { "type": "card", "title": "Today's Mining", "value": "10 USNT" },
+        { "type": "card", "title": "Recent Activities", "value": "Referral Bonus +25 USNT" }
+      ],
+      "footerNav": [
+        { "label": "Home", "target": "home" },
+        { "label": "Wallet", "target": "wallet" },
+        { "label": "Mining", "target": "mining" },
+        { "label": "Profile", "target": "profile" },
+        { "label": "Market", "target": "market" },
+        { "label": "Community", "target": "community" }
+      ]
+    },
+    {
+      "id": "wallet",
+      "name": "Wallet",
+      "balance": "1,250 USNT",
+      "elements": [
+        { "type": "button", "label": "Receive", "action": "popup", "popup": "qrCode" },
+        { "type": "button", "label": "Send", "action": "navigate", "target": "sendFlow" },
+        { "type": "transaction", "description": "Sent -50 USNT", "to": "0xCB5…3f3a" }
+      ],
+      "footerNavRef": "home.footerNav"
+    },
+    {
+      "id": "mining",
+      "name": "Mining",
+      "elements": [
+        { "type": "button", "label": "Mine", "style": "circle", "action": "state", "effect": "addBalance:10" },
+        { "type": "card", "title": "Today's Mining", "value": "10 USNT" },
+        { "type": "card", "title": "Total Mined", "value": "100 USNT" }
+      ],
+      "footerNavRef": "home.footerNav"
+    },
+    {
+      "id": "profile",
+      "name": "Profile",
+      "elements": [
+        { "type": "section", "title": "Security", "options": ["2FA", "Fingerprint", "Password"] },
+        { "type": "section", "title": "Language", "options": ["عربي", "English"] },
+        { "type": "section", "title": "Referral", "bonus": "+25 USNT" },
+        { "type": "button", "label": "Logout", "action": "navigate", "target": "home" }
+      ],
+      "footerNavRef": "home.footerNav"
+    },
+    {
+      "id": "market",
+      "name": "Market",
+      "elements": [
+        { "type": "text", "value": "1 USNT = 1 USD" },
+        { "type": "chart", "style": "sparkline", "pairs": ["USNT/USDT", "USNT/BTC", "USNT/ETH"] },
+        { "type": "news", "items": ["Latest announcements", "Partnership updates"] }
+      ],
+      "footerNavRef": "home.footerNav"
+    },
+    {
+      "id": "community",
+      "name": "Community / News",
+      "elements": [
+        { "type": "feed", "items": ["Project Updates", "Partnerships", "Referral Campaigns"] },
+        { "type": "links", "items": ["Twitter", "Telegram", "Discord"] }
+      ],
+      "footerNavRef": "home.footerNav"
+    }
+  ],
+  "extraPopups": {
+    "qrCode": {
+      "title": "Receive USNT",
+      "elements": [
+        { "type": "qr", "address": "0x1234...ABCD" },
+        { "type": "button", "label": "Copy Address", "action": "copy" }
+      ]
+    },
+    "sendFlow": {
+      "title": "Send USNT",
+      "elements": [
+        { "type": "input", "label": "Recipient Address" },
+        { "type": "input", "label": "Amount" },
+        { "type": "button", "label": "Confirm Send", "action": "state", "effect": "subtractBalance" }
+      ]
+    }
+  }
+}
